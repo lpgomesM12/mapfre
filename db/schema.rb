@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20160831092826) do
     t.string   "cidade"
     t.string   "cep"
     t.string   "uf"
-    t.decimal  "valr_premioliquido"
-    t.decimal  "valr_adicional"
-    t.decimal  "valr_custo"
-    t.decimal  "valr_iof"
-    t.decimal  "valr_premiototal"
+    t.string   "valr_premioliquido"
+    t.string   "valr_adicional"
+    t.string   "valr_custo"
+    t.string   "valr_iof"
+    t.string   "valr_premiototal"
     t.string   "desc_obs"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
