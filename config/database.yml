@@ -6,3 +6,13 @@ default: &default
 development:
   <<: *default
   database: mapfre
+
+
+
+production:
+  adapter: postgresql
+  database: mapfre
+  pool: 5
+  timeout: 5000
+  username: postgres
+password: sivic
