@@ -44,7 +44,11 @@
        <table style="width:60%">
          <tr>
             <td align="center">
-              <%=@apolice.numr_mensal%>
+              <%if @apolice.numr_mensal == nil%>
+                 <br>
+                <%else%>
+                  <%=@apolice.numr_mensal%>
+               <%end%>
             </td>
          </tr>
       </table>
