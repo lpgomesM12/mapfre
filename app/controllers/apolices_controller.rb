@@ -48,6 +48,11 @@ class ApolicesController < ApplicationController
 
   # GET /apolices/1/edit
   def edit
+
+     @apolice.data_proposta = @apolice.data_proposta.strftime("%d/%m/%Y")
+     @apolice.vig_inicio = @apolice.vig_inicio.strftime("%d/%m/%Y")
+     @apolice.vig_termino = @apolice.vig_termino.strftime("%d/%m/%Y")
+
   end
 
   # POST /apolices
@@ -98,6 +103,6 @@ class ApolicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apolice_params
-      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs)
+      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :numr_mensal)
     end
 end
