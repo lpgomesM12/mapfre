@@ -1,0 +1,151 @@
+<%= form_for(@apolice) do |f| %>
+  <% if @apolice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@apolice.errors.count, "error") %> prohibited this apolice from being saved:</h2>
+
+      <ul>
+      <% @apolice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-3">
+     <%= f.label :ramo %><br>
+     <%= f.text_field :ramo, :class => "form-control" %>
+   </div>
+  <div class="col-lg-3">
+    <%= f.label :produto %><br>
+    <%= f.text_field :produto, :class => "form-control"%>
+   </div>
+    <div class="col-lg-3">
+      <%= f.label :apolice %><br>
+      <%= f.text_field :apolice, :class => "form-control"%>
+    </div>
+    <div class="col-lg-3">
+      <%= f.label :item %><br>
+      <%= f.text_field :item, :class => "form-control" %>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-lg-2">
+    <%= f.label :data_proposta %><br>
+    <%= f.text_field :data_proposta, :class => "form-control"  %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :vig_inicio %><br>
+    <%= f.text_field :vig_inicio, :class => "form-control"  %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :vig_termino %><br>
+    <%= f.text_field :vig_termino, :class => "form-control"  %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= f.label :nome_segurado %><br>
+    <%= f.text_field :nome_segurado, :class => "form-control"  %>
+  </div>
+  <div class="col-lg-4">
+   <label>CPF</label>
+    <%= f.text_field :cpf, :class => "form-control"  %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8">
+    <%= f.label :endereco %><br>
+    <%= f.text_field :endereco, :class => "form-control" %>
+  </div>
+  <div class="col-lg-4">
+    <%= f.label :bairro %><br>
+    <%= f.text_field :bairro, :class => "form-control" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <%= f.label :cidade %><br>
+    <%= f.text_field :cidade, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>CEP</label>
+    <%= f.text_field :cep, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>UF</label>
+    <%= f.text_field :uf, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-2">
+    <label>Prêmio líquido</label>
+    <%= f.text_field :valr_premioliquido, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>Adicional</label>
+    <%= f.text_field :valr_adicional, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>Custo</label>
+    <%= f.text_field :valr_custo, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>IOF</label>
+    <%= f.text_field :valr_iof, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>Prêmio Total</label>
+    <%= f.text_field :valr_premiototal, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <label>Observações</label>
+    <%= f.text_area :desc_obs, :class => "form-control" %>
+  </div>
+</div>
+
+  </div>
+ </div>
+
+<div class="row mar-bot40">
+<div class="col-lg-8" >
+ <div class="btn-group">
+    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+    </button>
+    <%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+      <% end %>
+  </div>
+ </div>
+</div>
+
+<br>
+<% end %>
+
+<script type="text/javascript">
+
+jQuery(function($){
+  $("#apolice_data_proposta").mask("99/99/9999");
+  $("#apolice_vig_inicio").mask("99/99/9999");
+  $("#apolice_vig_termino").mask("99/99/9999");
+  $("#apolice_cpf").mask("999.999.999-99");
+
+});
+
+$(function() {
+ $("#apolice_valr_premioliquido").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ $("#apolice_valr_adicional").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+
+})
+
+</script>

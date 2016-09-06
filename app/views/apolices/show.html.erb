@@ -1,0 +1,120 @@
+<br>
+<section class="content-header">
+    <%if notice%>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+      <%end%>
+</section>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">Cadastro de Apólice</div>
+  <div class="panel-body">
+
+<p>
+  <strong>Ramo:</strong>
+  <%= @apolice.ramo %>
+</p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @apolice.produto %>
+</p>
+
+<p>
+  <strong>Apolice:</strong>
+  <%= @apolice.apolice %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @apolice.item %>
+</p>
+
+<p>
+  <strong>Data proposta:</strong>
+  <%= @apolice.data_proposta.blank? ? '' : @apolice.data_proposta.strftime("%d/%m/%Y")%>
+</p>
+
+<p>
+  <strong>Vig inicio:</strong>
+  <%= @apolice.vig_inicio.blank? ? '' : @apolice.vig_inicio.strftime("%d/%m/%Y")%>
+</p>
+
+<p>
+  <strong>Vig termino:</strong>
+  <%= @apolice.vig_termino.blank? ? '' : @apolice.vig_termino.strftime("%d/%m/%Y")%>
+</p>
+
+<p>
+  <strong>Nome segurado:</strong>
+  <%= @apolice.nome_segurado %>
+</p>
+
+<p>
+  <strong>CPF:</strong>
+  <%= @apolice.cpf %>
+</p>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @apolice.endereco %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @apolice.cidade %>
+</p>
+
+<p>
+  <strong>CEP:</strong>
+  <%= @apolice.cep %>
+</p>
+
+<p>
+  <strong>UF:</strong>
+  <%= @apolice.uf %>
+</p>
+
+<p>
+  <strong>Prêmio líquido:</strong>
+  <%= @apolice.valr_premioliquido %>
+</p>
+
+<p>
+  <strong>Adicional:</strong>
+  <%= @apolice.valr_adicional %>
+</p>
+
+<p>
+  <strong>Custo:</strong>
+  <%= @apolice.valr_custo %>
+</p>
+
+<p>
+  <strong>IOF:</strong>
+  <%= @apolice.valr_iof %>
+</p>
+
+<p>
+  <strong>Prêmio Total:</strong>
+  <%= @apolice.valr_premiototal %>
+</p>
+
+<p>
+  <strong>Desc obs:</strong>
+  <%= @apolice.desc_obs %>
+</p>
+
+ </div>
+</div>
+
+<div class="btn-group">
+     <%= link_to edit_apolice_path(@apolice), :class => "btn btn-default btn-sm" do %>
+  <span class="glyphicon glyphicon-pencil"></span> Editar
+<% end %>
+<%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
+   <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+<% end %>
+</div>
+
+<br>
