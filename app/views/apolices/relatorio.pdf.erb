@@ -98,7 +98,11 @@
  </tr>
  <tr>
    <td><strong>Nome:</strong>   <%= @apolice.nome_segurado%></td>
-   <td><strong>CPF:</strong>   <%= @apolice.cpf%></td>
+   <%if @apolice.cnpj%>
+     <td><strong>CNPJ</strong>  <%= @apolice.cpf%></td>
+     <%else%>
+     <td><strong>CPF</strong>  <%= @apolice.cpf%></td>
+   <%end%>
  </tr>
 </table>
 <br>
@@ -181,7 +185,7 @@
    </tr>
   </table>
 </div>
-<P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: hidráulica,<br>
+<P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: chaveiro, hidráulica,<br>
   eletrícista, vidraceiro e indicação de profissionais.</p>
 
   <div align="left">
@@ -204,39 +208,43 @@
    </tr>
   </table>
 
-  <P style="font-size: 10px">
-    Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
-    . Capitais: 4002 1000 <br>
-    . Demais Regiões: 0800 775 1000
-  </p>
+  <div id="tudo">
+  <div id="colum">
+    <P style="font-size: 10px">
+      Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
+      . Capitais: 4002 1000 <br>
+      . Demais Regiões: 0800 775 1000
+    </p>
+      <table id="t01">
+       <tr>
+         <th align="center">Dados do Corretor</th>
+       </tr>
+      </table>
+      <P style="font-size: 11px">
+       Nome<br>
+       <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
+      </p>
 
-  <div align="left">
-    <table id="t01" style="width:28%">
-     <tr>
-       <th align="center">Dados do Corretor</th>
-     </tr>
-    </table>
+      <hr>
+      <table id="t02" style="width:100%">
+       <tr>
+         <td>Código</td>
+         <td>Código SUSEP</td>
+         <td>Telefone</td>
+       </tr>
+       <tr>
+         <th align="left">MAPFRE</th>
+         <th align="left">36413 00001020142714</th>
+         <th align="left">(62) 3234-3999</th>
+       </tr>
+       </table>
+    </div>
+
+    <div id="colum1">
+          <div id="box"></div>
+    </div>
   </div>
-<P style="font-size: 11px">
- Nome<br>
- <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
-</p>
 
-<div align="left" style="width:80%">
-  <hr>
-  <table  style="width:100%" id="t02">
-   <tr>
-     <td>Código</td>
-     <td>Código SUSEP</td>
-     <td>Telefone</td>
-   </tr>
-   <tr>
-     <th align="left">MAPFRE</th>
-     <th align="left">36413 00001020142714</th>
-     <th align="left">(62) 3234-3999</th>
-   </tr>
-   </table>
-</div>
 
 <style media="screen">
   table, th, td {
@@ -261,6 +269,29 @@
     border:none !important;
     border-collapse: collapse;
     padding:2px;
+  }
+
+  #box{
+  	width:300px;
+  	height:160px;
+  	border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+	}
+
+  #tudo {
+  	width: 100%;
+  }
+  #colum {
+  	position:relative;
+  	width: 55%;
+  	float: left;
+  }
+  #colum1 {
+    position:relative;
+    width: 45%;
+    top: 2px;
+    float: left;
   }
 
   </style>
