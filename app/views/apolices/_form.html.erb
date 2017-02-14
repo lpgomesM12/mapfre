@@ -170,9 +170,11 @@ jQuery(function($){
    if(x){
         $("#apolice_cpf").mask("99.999.999/9999-99");
           $("#radiocnpj").attr("checked",true);
+          $("#apolice_cnpj").val(true);
      }else{
         $("#apolice_cpf").mask("999.999.999-99");
         $("#radiocpf").attr("checked",true);
+        $("#apolice_cnpj").val(false);
     }
 });
 
