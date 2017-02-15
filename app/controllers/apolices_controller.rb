@@ -2,6 +2,9 @@ class ApolicesController < ApplicationController
   before_action :set_apolice, only: [:show, :edit, :update, :destroy]
 
 
+ def home
+ end
+
  def relatorio
 
    @apolice = Apolice.find(params[:id])
