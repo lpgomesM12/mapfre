@@ -51,7 +51,11 @@
 </p>
 
 <p>
+  <% if @apolice.cnpj == true %>
+    <strong>CNPJ:</strong>
+  <%else%>
   <strong>CPF:</strong>
+  <%end%>
   <%= @apolice.cpf %>
 </p>
 
