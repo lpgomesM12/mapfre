@@ -123,14 +123,31 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <label>Observações</label>
-    <%= f.text_area :desc_obs, :class => "form-control" %>
+  <div class="row">
+    <div class="col-lg-12">
+      <label>Observações</label>
+      <%= f.text_area :desc_obs, :class => "form-control" %>
+    </div>
   </div>
+
+  <hr>
+
+ </div>
 </div>
 
-<hr>
+<div class="row mar-bot40">
+<div class="col-lg-8" >
+ <div class="btn-group">
+    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+    </button>
+    <%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+      <% end %>
+  </div>
+  </div>
+ </div>
+
 
 <%if @apolice.id%>
 <div class="row">
