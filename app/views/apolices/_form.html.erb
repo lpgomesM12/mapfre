@@ -71,11 +71,15 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-7">
     <%= f.label :endereco %><br>
     <%= f.text_field :endereco, :class => "form-control" %>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-2">
+    <%= f.label :apartamento %><br>
+    <%= f.text_field :apartamento, :class => "form-control" %>
+  </div>
+  <div class="col-lg-3">
     <%= f.label :bairro %><br>
     <%= f.text_field :bairro, :class => "form-control" %>
   </div>
@@ -101,12 +105,12 @@
     <%= f.text_field :valr_premioliquido, :class => "form-control" %>
   </div>
   <div class="col-lg-2">
-    <label>Adicional</label>
+    <label>Sonar Assistencia</label>
     <%= f.text_field :valr_adicional, :class => "form-control" %>
   </div>
 
   <div class="col-lg-2">
-    <label>Custo</label>
+    <label>Ad. de Fracionamento</label>
     <%= f.text_field :valr_custo, :class => "form-control" %>
   </div>
   <div class="col-lg-2">
@@ -126,6 +130,37 @@
   </div>
 </div>
 
+<hr>
+
+<%if @apolice.id%>
+<div class="row">
+  <div class="col-lg-10">
+    <select class="form-control" name="servico" id="servico">
+      <option value="Chaveiro">Chaveiro</option>
+      <option value="Hidráulica">Hidráulica</option>
+      <option value="Eletrícista">Eletrícista</option>
+      <option value="Vidraceiro">Vidraceiro</option>
+    </select>
+  </div>
+  <div class="col-lg-2">
+    <button type="button" class="btn btn-default" onclick="salva()">
+      <span class="glyphicon glyphicon-arrow-down text-primary"></span> Adicionar
+       </button>
+  </div>
+</div>
+
+<br>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Serviços utilizados</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbservico">
+    </tbody>
+  </table>
   </div>
  </div>
 
@@ -141,12 +176,61 @@
   </div>
  </div>
 </div>
-
+<%end%>
 <br>
 
 <% end %>
 
 <script type="text/javascript">
+
+//função salvar/editar dados despesas
+ function salva(){
+      $.ajax({
+        url: '/addservico',
+        data : {
+            servico:  $('#servico').val(),
+            apolice_id: '<%=@apolice.id%>'
+        },
+        success: function(data){
+          buscaServicos();
+        }
+      })
+  };
+
+function buscaServicos() {
+  $.ajax({
+    url: '/buscaservico',
+    data : {
+        apolice_id: '<%=@apolice.id%>'
+    },
+    success: function(data){
+          var html = "";
+          $("#tbservico").empty();
+           for (var i in data) {
+             var item = data[i];
+             html += "<tr><td>"+item.nome+"</td>";
+             html += "<td Align='center'>";
+             html += " <button type='button' onclick='deleta_servico("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
+             html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
+           };
+           $("#tbservico").append(html);
+         }
+     })
+  }
+
+  //função salvar/editar dados despesas
+function deleta_servico(id){
+        $.ajax({
+          url: '/deletaservico',
+          data : {
+              servico_id:  id
+          },
+          success: function(data){
+            buscaServicos();
+          }
+        })
+  };
+
 
 function selecionar(val) {
   if (val == "CPF"){
@@ -162,6 +246,8 @@ function selecionar(val) {
       $("#apolice_cpf").mask("99.999.999/9999-99");
   }
 }
+
+
 
 jQuery(function($){
   $("#cnpj").hide();
@@ -183,12 +269,14 @@ jQuery(function($){
 });
 
 $(function() {
- $("#apolice_valr_premioliquido").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
- $("#apolice_valr_adicional").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
- $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
- $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
- $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_premioliquido").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_adicional").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
 })
 
+
+buscaServicos();
 
 </script>

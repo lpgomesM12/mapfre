@@ -5,7 +5,27 @@ class ApolicesController < ApplicationController
  def home
  end
 
- def relatorio
+ def add_servico
+   @servico = Servico.new
+   @servico.nome = params[:servico]
+   @servico.apolice_id = params[:apolice_id]
+   @servico.save
+   render :json => true
+ end
+
+def busca_servico
+  @servico = Servico.where(apolice_id: params[:apolice_id])
+
+  render :json => @servico.map { |item| {:id => item.id, :nome => item.nome }}
+end
+
+def deleta_servico
+  @servico = Servico.find(params[:servico_id])
+  @servico.destroy
+  render :json => true
+end
+
+def relatorio
 
    @apolice = Apolice.find(params[:id])
 
@@ -20,7 +40,12 @@ class ApolicesController < ApplicationController
   # GET /apolices
   # GET /apolices.json
   def index
-    @apolices = Apolice.page(params[:page]).per(10)
+    if params[:q]
+      @q =  params[:q]
+      @apolices = Apolice.where("lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10)
+    else
+      @apolices = Apolice.page(params[:page]).per(10)
+    end
   end
 
   # GET /apolices/1
@@ -106,6 +131,6 @@ class ApolicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apolice_params
-      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :numr_mensal, :cnpj)
+      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :numr_mensal, :cnpj, :apartamento)
     end
 end

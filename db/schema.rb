@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211192118) do
+ActiveRecord::Schema.define(version: 20170607082424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20170211192118) do
     t.datetime "updated_at",         null: false
     t.string   "numr_mensal"
     t.boolean  "cnpj"
+    t.string   "apartamento"
   end
 
+  create_table "servicos", force: :cascade do |t|
+    t.string   "nome"
+    t.integer  "apolice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "servicos", ["apolice_id"], name: "index_servicos_on_apolice_id", using: :btree
+
+  add_foreign_key "servicos", "apolices"
 end
