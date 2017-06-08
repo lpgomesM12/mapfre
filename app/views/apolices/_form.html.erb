@@ -132,72 +132,57 @@
 
   <hr>
 
- </div>
-</div>
-
-<div class="row mar-bot40">
-<div class="col-lg-8" >
- <div class="btn-group">
-    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
-    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
-    </button>
-    <%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
-      <% end %>
+  <%if @apolice.id%>
+  <div class="row">
+    <div class="col-lg-10">
+      <select class="form-control" name="servico" id="servico">
+        <option value="Chaveiro">Chaveiro</option>
+        <option value="Hidráulica">Hidráulica</option>
+        <option value="Eletrícista">Eletrícista</option>
+        <option value="Vidraceiro">Vidraceiro</option>
+        <option value="Vidraceiro">Desentupimento</option>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <button type="button" class="btn btn-default" onclick="salva()">
+        <span class="glyphicon glyphicon-arrow-down text-primary"></span> Adicionar
+         </button>
+    </div>
   </div>
-  </div>
- </div>
 
+  <br>
 
-<%if @apolice.id%>
-<div class="row">
-  <div class="col-lg-10">
-    <select class="form-control" name="servico" id="servico">
-      <option value="Chaveiro">Chaveiro</option>
-      <option value="Hidráulica">Hidráulica</option>
-      <option value="Eletrícista">Eletrícista</option>
-      <option value="Vidraceiro">Vidraceiro</option>
-      <option value="Vidraceiro">Desentupimento</option>
-    </select>
-  </div>
-  <div class="col-lg-2">
-    <button type="button" class="btn btn-default" onclick="salva()">
-      <span class="glyphicon glyphicon-arrow-down text-primary"></span> Adicionar
-       </button>
-  </div>
-</div>
-
-<br>
-
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Serviços utilizados</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="tbservico">
-    </tbody>
-  </table>
-  </div>
- </div>
-
-<div class="row mar-bot40">
-<div class="col-lg-8" >
- <div class="btn-group">
-    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
-    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
-    </button>
-    <%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
-      <% end %>
-  </div>
- </div>
-</div>
-<%end%>
-<br>
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Serviços utilizados</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbservico">
+      </tbody>
+    </table>
+    </div>
+   </div>
 
 <% end %>
+
+ </div>
+</div>
+
+<div class="row mar-bot40">
+<div class="col-lg-8" >
+ <div class="btn-group">
+    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+    </button>
+    <%= link_to apolices_path, :class => "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+      <% end %>
+  </div>
+  </div>
+ </div>
+
 
 <script type="text/javascript">
 
