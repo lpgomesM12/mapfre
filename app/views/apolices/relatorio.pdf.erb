@@ -3,10 +3,10 @@
 <table style="width:100%" id="t02">
   <tr>
     <td>
-    <%= wicked_pdf_image_tag 'sonar.jpg', :style=>"width:220px;height:50px;"%>
+    <%= wicked_pdf_image_tag 'sonar.jpg', :style=>"width:260px;height:65px;"%>
     </td>
     <td align="right" style=" margin-top:0px">
-          <strong>APÓLICE COLETIVA</strong>
+        <!--<strong>APÓLICE COLETIVA</strong>-->
     </td>
 </tr>
 </table>
@@ -20,7 +20,7 @@
           </td>
         </table>
       </td>
-      <td align="right">
+      <!--<td align="right">
         <table style="width:60%">
           <tr>
              <td align="center">
@@ -47,7 +47,7 @@
             </td>
          </tr>
       </table>
-      </td>
+      </td>-->
     </tr>
 </table>
 
@@ -165,7 +165,7 @@
      </tr>
     </table>
 </div>
-<div align="left">
+<!--<div align="left">
   <table id="t01" style="width:28%">
    <tr>
      <th align="center">Assistência - Perfil PLUS</th>
@@ -173,7 +173,7 @@
   </table>
 </div>
 <P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: chaveiro, hidráulica,<br>
-  eletrícista, vidraceiro e indicação de profissionais.</p>
+  eletrícista, vidraceiro e indicação de profissionais.</p>-->
 <table id="t01" style="width:100%">
  <tr>
    <th align="center">Sonar Club Assistência</th>
@@ -182,24 +182,40 @@
 <div align="center" style="width:100%">
     <table  style="width:90%" id="t02">
      <tr>
-       <th align="left">Cobertura</th>
+       <th align="left">Serviços</th>
        <th align="right">Valor</th>
      </tr>
      <tr>
-       <td>DANOS POR ÁGUA</td>
-       <td align="right">5.000,00</td>
+       <td>CHAVEIRO</td>
+       <td align="right"></td>
      </tr>
      <tr>
-       <td>DESENTUPIMENTO</td>
+       <td>ELETRICISTA</td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+      <tr>
+       <td>ENCANADOR</td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+      <tr>
+       <td>ENCANADOR</td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+     <tr>
+       <td>DESENTUPIMENTO </td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+     <tr>
+       <td>VIDRACEIRO </td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+     <tr>
+       <td>CHUVEIRO </td>
        <td align="right">1 UTILIZAÇÃO</td>
      </tr>
      <tr>
        <td>DESCONTO FRANQUIA DANOS ALÉTRICOS</td>
        <td align="right">300,00</td>
-     </tr>
-     <tr>
-       <td>DESCONTO FRANQUIA VENDAVAL</td>
-       <td align="right">255,00</td>
      </tr>
      <tr>
        <td>DESCONTO FRANQUIA VIDROS</td>
@@ -224,7 +240,7 @@
      <td align="center">Prêmio Total<br><%=number_to_currency(@apolice.valr_premiototal, :unit => "R$ ", :separator => ",", :delimiter => ".") rescue nil%></td>
    </tr>
    <tr>
-     <td colspan="5" style="background-color: #cbcbcb;height: 50px;"><strong>Observações:</strong> <%=@apolice.desc_obs%><br></td>
+     <!--<td colspan="5" style="background-color: #cbcbcb;height: 50px;"><strong>Observações:</strong> <%=@apolice.desc_obs%><br></td>-->
    </tr>
   </table>
 
@@ -232,7 +248,7 @@
   <div id="colum">
     <P style="font-size: 10px">
       Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
-      . Capitais e Regiões Metropolitana 62 3432-3989<br>
+       Capitais e Regiões Metropolitana 62 3432-3989<br>
     </p>
       <!--<table id="t01">
        <tr>
@@ -244,7 +260,7 @@
        <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
       </p>-->
 
-      <hr>
+      <!--<hr>-->
       <table id="t02" style="width:100%">
        <tr>
          <!--<td>Código</td>-->
@@ -259,9 +275,9 @@
        </table>
     </div>
 
-    <div id="colum1">
+    <!--<div id="colum1">
           <div id="box"></div>
-    </div>
+    </div>-->
   </div>
 
 

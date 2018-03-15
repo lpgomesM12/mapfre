@@ -1,31 +1,26 @@
 <meta charset="utf-8">
 
-
-
 <table style="width:100%" id="t02">
   <tr>
     <td>
-    <%= wicked_pdf_image_tag 'sonar.png', :style=>"width:300px;height:80px;"%>
+    <%= wicked_pdf_image_tag 'sonar.jpg', :style=>"width:260px;height:65px;"%>
     </td>
     <td align="right" style=" margin-top:0px">
-          <strong>APÓLICE COLETIVA</strong>
+        <!--<strong>APÓLICE COLETIVA</strong>-->
     </td>
 </tr>
 </table>
-
-<br>
 <br>
 <table style="width:100%" id="t02">
     <tr>
       <td>
          <table style="width:80%" id="t02">
           <td align="right">
-            <strong align="center" style="font-size: 12px;">APÓLICE DE SEGURO</strong><br>
-            <strong align="center" style="font-size: 12px;">MAPFRE RESIDENCIAL</strong>
+            <strong align="center" style="font-size: 12px;">APÓLICE DE SEGURO RESIDENCIAL</strong><br>
           </td>
         </table>
       </td>
-      <td align="right">
+      <!--<td align="right">
         <table style="width:60%">
           <tr>
              <td align="center">
@@ -52,11 +47,9 @@
             </td>
          </tr>
       </table>
-      </td>
+      </td>-->
     </tr>
 </table>
-
-<br>
 
 <table style="width:100%">
   <caption  style="text-align:left;"><strong> Compreensivo Residencial</strong></caption>
@@ -98,7 +91,11 @@
  </tr>
  <tr>
    <td><strong>Nome:</strong>   <%= @apolice.nome_segurado%></td>
-   <td><strong>CPF:</strong>   <%= @apolice.cpf%></td>
+   <%if @apolice.cnpj%>
+     <td><strong>CNPJ</strong>  <%= @apolice.cpf%></td>
+     <%else%>
+     <td><strong>CPF</strong>  <%= @apolice.cpf%></td>
+   <%end%>
  </tr>
 </table>
 <br>
@@ -107,7 +104,7 @@
    <th align="left" colspan="2">Dados do Risco</th>
  </tr>
  <tr>
-   <td colspan="2"><strong>Endereço:</strong>  <%= @apolice.endereco%></td>
+   <td colspan="2"><strong>Endereço:</strong>  <%= @apolice.endereco%> <%= @apolice.apartamento %></td>
  </tr>
  <tr>
    <td><strong>Bairro:</strong> <%= @apolice.bairro%></td>
@@ -118,17 +115,12 @@
    <td><strong>UF:</strong> <%= @apolice.uf%></td>
  </tr>
 </table>
-
 <br>
-
 <table id="t01" style="width:100%">
  <tr>
    <th align="center">Cobertura Contratadas e Valores Máximos de Indenizalção</th>
  </tr>
 </table>
-
-<br>
-
 <div align="center" style="width:100%">
     <table  style="width:90%" id="t02">
      <tr>
@@ -173,7 +165,6 @@
      </tr>
     </table>
 </div>
-<br>
 <div align="left">
   <table id="t01" style="width:28%">
    <tr>
@@ -181,8 +172,41 @@
    </tr>
   </table>
 </div>
-<P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: hidráulica,<br>
+<P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: chaveiro, hidráulica,<br>
   eletrícista, vidraceiro e indicação de profissionais.</p>
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="center">Sonar Club Assistência</th>
+ </tr>
+</table>
+<div align="center" style="width:100%">
+    <table  style="width:90%" id="t02">
+     <tr>
+       <th align="left">Cobertura</th>
+       <th align="right">Valor</th>
+     </tr>
+     <tr>
+       <td>DANOS POR ÁGUA</td>
+       <td align="right">5.000,00</td>
+     </tr>
+     <tr>
+       <td>DESENTUPIMENTO</td>
+       <td align="right">1 UTILIZAÇÃO</td>
+     </tr>
+     <tr>
+       <td>DESCONTO FRANQUIA DANOS ALÉTRICOS</td>
+       <td align="right">300,00</td>
+     </tr>
+     <tr>
+       <td>DESCONTO FRANQUIA VENDAVAL</td>
+       <td align="right">255,00</td>
+     </tr>
+     <tr>
+       <td>DESCONTO FRANQUIA VIDROS</td>
+       <td align="right">80,00</td>
+     </tr>
+    </table>
+</div>
 
   <div align="left">
     <table id="t01" style="width:40%">
@@ -194,8 +218,8 @@
   <table id="t03" style="width:100%">
    <tr>
      <td align="center">Prêmio Líquido<br> <%=number_to_currency(@apolice.valr_premioliquido , unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
-     <td align="center">Adicional<br> <%=number_to_currency(@apolice.valr_adicional, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
-     <td align="center">Custo<br> <%=number_to_currency(@apolice.valr_custo, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Sonar Assistência<br> <%=number_to_currency(@apolice.valr_adicional, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Ad. de Fracionamento<br> <%=number_to_currency(@apolice.valr_custo, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
      <td align="center">IOF<br> <%=number_to_currency(@apolice.valr_iof, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
      <td align="center">Prêmio Total<br><%=number_to_currency(@apolice.valr_premiototal, :unit => "R$ ", :separator => ",", :delimiter => ".") rescue nil%></td>
    </tr>
@@ -204,39 +228,42 @@
    </tr>
   </table>
 
-  <P style="font-size: 10px">
-    Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
-    . Capitais: 4002 1000 <br>
-    . Demais Regiões: 0800 775 1000
-  </p>
+  <div id="tudo">
+  <div id="colum">
+    <P style="font-size: 10px">
+      Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
+      . Capitais e Regiões Metropolitana 62 3432-3989<br>
+    </p>
+      <!--<table id="t01">
+       <tr>
+         <th align="center">Dados do Corretor</th>
+       </tr>
+      </table>
+      <P style="font-size: 11px">
+       Nome<br>
+       <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
+      </p>-->
 
-  <div align="left">
-    <table id="t01" style="width:28%">
-     <tr>
-       <th align="center">Dados do Corretor</th>
-     </tr>
-    </table>
+      <hr>
+      <table id="t02" style="width:100%">
+       <tr>
+         <!--<td>Código</td>-->
+         <td>Código SUSEP</td>
+         <td>Telefone</td>
+       </tr>
+       <tr>
+         <!--<th align="left">MAPFRE</th>-->
+         <th align="left">36413 00001020142714</th>
+         <th align="left">(62) 3432-3989</th>
+       </tr>
+       </table>
+    </div>
+
+    <div id="colum1">
+          <div id="box"></div>
+    </div>
   </div>
-<P style="font-size: 11px">
- Nome<br>
- <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
-</p>
 
-<div align="left" style="width:80%">
-  <hr>
-  <table  style="width:100%" id="t02">
-   <tr>
-     <td>Código</td>
-     <td>Código SUSEP</td>
-     <td>Telefone</td>
-   </tr>
-   <tr>
-     <th align="left">MAPFRE</th>
-     <th align="left">36413 00001020142714</th>
-     <th align="left">(62) 3432-3989</th>
-   </tr>
-   </table>
-</div>
 
 <style media="screen">
   table, th, td {
@@ -261,6 +288,29 @@
     border:none !important;
     border-collapse: collapse;
     padding:2px;
+  }
+
+  #box{
+  	width:300px;
+  	height:160px;
+  	border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+	}
+
+  #tudo {
+  	width: 100%;
+  }
+  #colum {
+  	position:relative;
+  	width: 55%;
+  	float: left;
+  }
+  #colum1 {
+    position:relative;
+    width: 45%;
+    top: 2px;
+    float: left;
   }
 
   </style>
