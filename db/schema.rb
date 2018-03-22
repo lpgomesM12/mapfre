@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607082424) do
+ActiveRecord::Schema.define(version: 20180322023217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,26 @@ ActiveRecord::Schema.define(version: 20170607082424) do
     t.string   "apartamento"
   end
 
+  create_table "coberturaapolices", force: :cascade do |t|
+    t.integer  "apolice_id"
+    t.integer  "cobertura_id"
+    t.decimal  "valor",          precision: 10, scale: 2
+    t.decimal  "valor_franquia", precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "coberturaapolices", ["apolice_id"], name: "index_coberturaapolices_on_apolice_id", using: :btree
+  add_index "coberturaapolices", ["cobertura_id"], name: "index_coberturaapolices_on_cobertura_id", using: :btree
+
+  create_table "coberturas", force: :cascade do |t|
+    t.string   "nome"
+    t.decimal  "valor",          precision: 10, scale: 2
+    t.decimal  "valor_franquia", precision: 10, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
   create_table "servicos", force: :cascade do |t|
     t.string   "nome"
     t.integer  "apolice_id"
@@ -53,5 +73,7 @@ ActiveRecord::Schema.define(version: 20170607082424) do
 
   add_index "servicos", ["apolice_id"], name: "index_servicos_on_apolice_id", using: :btree
 
+  add_foreign_key "coberturaapolices", "apolices"
+  add_foreign_key "coberturaapolices", "coberturas"
   add_foreign_key "servicos", "apolices"
 end

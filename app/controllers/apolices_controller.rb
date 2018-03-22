@@ -2,6 +2,41 @@ class ApolicesController < ApplicationController
   before_action :set_apolice, only: [:show, :edit, :update, :destroy]
 
 
+  include ActionView::Helpers::NumberHelper
+
+ def coberturas_apolice
+     @coberturas = Coberturaapolice.where(apolice_id: params[:apolice_id])
+     render :json => @coberturas.map { |item| {:id => item.id, 
+                                                :nome => item.cobertura.nome, 
+                                                :valor => number_to_currency(item.valor, unit: "R$", separator: ",", delimiter: "."),
+                                                :valor_franquia =>number_to_currency(item.valor_franquia, unit: "R$", separator: ",", delimiter: ".") }}
+ end
+
+ def alterar_cobertura
+
+     params[:valor] = params[:valor].gsub("R$", '')
+     params[:valor] = params[:valor].gsub(".", '')
+     params[:valor] = params[:valor].gsub(",", '.')
+
+     params[:valor_franquia] = params[:valor_franquia].gsub("R$", '')
+     params[:valor_franquia] = params[:valor_franquia].gsub(".", '')
+     params[:valor_franquia] = params[:valor_franquia].gsub(",", '.')
+
+     @cobertura = Coberturaapolice.find(params[:id])
+     @cobertura.valor = params[:valor]
+     @cobertura.valor_franquia = params[:valor_franquia]
+     @cobertura.save
+     render :json => true
+ end
+
+
+ def delete_cobertura
+  @cobertura = Coberturaapolice.find(params[:id])
+  @cobertura.destroy
+  render :json => true
+ end
+
+
  def home
  end
 
@@ -12,6 +47,21 @@ class ApolicesController < ApplicationController
    @servico.save
    render :json => true
  end
+
+
+ def add_cobertura
+
+  @coberturaapolice = Coberturaapolice.new 
+  @cobertura = Cobertura.find(params[:cobertura_id])
+  @coberturaapolice.cobertura_id = @cobertura.id
+  @coberturaapolice.valor = @cobertura.valor
+  @coberturaapolice.valor_franquia = @cobertura.valor_franquia
+  @coberturaapolice.apolice_id = params[:apolice_id]
+  @coberturaapolice.save
+
+  render :json => true
+end
+
 
 def busca_servico
   @servico = Servico.where(apolice_id: params[:apolice_id])
@@ -51,7 +101,6 @@ def relatorio
   # GET /apolices/1
   # GET /apolices/1.json
   def show
-
     respond_to do |format|
       format.html
       format.pdf { render pdf: "Apolice",
@@ -66,20 +115,34 @@ def relatorio
     @apolice = Apolice.new
 
     respond_to do |format|
-      format.html
-      format.pdf { render pdf: "Apolice",
-        header: {center: "lllL"},
-        footer: { center: "[page] de [topage]" }
-        }
+    if @apolice.save
+        coberturas = Cobertura.all
+      
+        coberturas.each do |item|
+          coberturaapolice = Coberturaapolice.new
+          coberturaapolice.apolice_id = @apolice.id
+          coberturaapolice.cobertura_id = item.id
+          coberturaapolice.valor = item.valor
+          coberturaapolice.valor_franquia = item.valor_franquia
+          coberturaapolice.save
+        end
+
+
+        format.html { redirect_to edit_apolice_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
+        format.json { render :show, status: :created, location: @apolice }
+      else
+        format.html { render :new }
+        format.json { render json: @apolice.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # GET /apolices/1/edit
   def edit
 
-     @apolice.data_proposta = @apolice.data_proposta.strftime("%d/%m/%Y")
-     @apolice.vig_inicio = @apolice.vig_inicio.strftime("%d/%m/%Y")
-     @apolice.vig_termino = @apolice.vig_termino.strftime("%d/%m/%Y")
+     @apolice.data_proposta = @apolice.data_proposta.strftime("%d/%m/%Y") rescue nil
+     @apolice.vig_inicio = @apolice.vig_inicio.strftime("%d/%m/%Y") rescue nil
+     @apolice.vig_termino = @apolice.vig_termino.strftime("%d/%m/%Y") rescue nil
 
   end
 

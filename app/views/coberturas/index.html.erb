@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Coberturas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Valor</th>
+      <th>Valor franquia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coberturas.each do |cobertura| %>
+      <tr>
+        <td><%= cobertura.nome %></td>
+        <td><%= cobertura.valor %></td>
+        <td><%= cobertura.valor_franquia %></td>
+        <td><%= link_to 'Show', cobertura %></td>
+        <td><%= link_to 'Edit', edit_cobertura_path(cobertura) %></td>
+        <td><%= link_to 'Destroy', cobertura, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cobertura', new_cobertura_path %>

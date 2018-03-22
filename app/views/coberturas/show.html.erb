@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @cobertura.nome %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @cobertura.valor %>
+</p>
+
+<p>
+  <strong>Valor franquia:</strong>
+  <%= @cobertura.valor_franquia %>
+</p>
+
+<%= link_to 'Edit', edit_cobertura_path(@cobertura) %> |
+<%= link_to 'Back', coberturas_path %>

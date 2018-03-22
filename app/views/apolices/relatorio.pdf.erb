@@ -13,9 +13,9 @@
 <table style="width:100%" id="t02">
     <tr>
       <td>
-         <table style="width:80%" id="t02">
+         <table style="width:100%" id="t02">
           <td align="right">
-            <strong align="center" style="font-size: 12px;">APÓLICE DE SEGURO RESIDENCIAL</strong><br>
+            <strong align="center" style="font-size: 12px;">CERTIFICADO DE SEGURO RESIDENCIAL</strong><br>
           </td>
         </table>
       </td>
@@ -128,41 +128,16 @@
        <th align="right">Valor</th>
        <th align="right">Franquias</th>
      </tr>
+     <% @coberturas = Coberturaapolice.where(apolice_id: @apolice.id)%>
+     <% @coberturas.each do |item| %>
+    
      <tr>
-       <td>INC. / RAIO EXPL. / QUEDA AERONAVE</td>
-       <td align="right">120.000,00</td>
-       <td align="right">450,00</td>
+       <td><%=item.cobertura.nome%></td>
+       <td align="right"><%=number_to_currency(item.valor, unit: "R$", separator: ",", delimiter: ".")%></td>
+       <td align="right"><%=number_to_currency(item.valor_franquia, unit: "R$", separator: ",", delimiter: ".")%></td>
      </tr>
-     <tr>
-       <td>ROUBO / FURTO - VERBA ÚNICA</td>
-       <td align="right">6.000,00</td>
-       <td align="right">0,00</td>
-     </tr>
-     <tr>
-       <td>VENDAVAL / IMPACTO VEICULO</td>
-       <td align="right">15.000,00</td>
-       <td align="right">450,00</td>
-     </tr>
-     <tr>
-       <td>QUEBRA DE VIDROS</td>
-       <td align="right">2.000,00</td>
-       <td align="right">160,00</td>
-     </tr>
-     <tr>
-       <td>DANOS ELÈTRICOS</td>
-       <td align="right">8.000,00</td>
-       <td align="right">600,00</td>
-     </tr>
-     <tr>
-       <td>PERDA / PAGAMENTO DE ALUGUEL</td>
-       <td align="right">6.000,00</td>
-       <td align="right">0,00</td>
-     </tr>
-     <tr>
-       <td>RESP.CIVIL - IMÓVEL FAMILIAR</td>
-       <td align="right">10.000,00</td>
-       <td align="right">0,00</td>
-     </tr>
+     <%end%>
+    
     </table>
 </div>
 <!--<div align="left">
@@ -183,7 +158,6 @@
     <table  style="width:90%" id="t02">
      <tr>
        <th align="left">Serviços</th>
-       <th align="right">Valor</th>
      </tr>
      <tr>
        <td>CHAVEIRO</td>
@@ -191,35 +165,23 @@
      </tr>
      <tr>
        <td>ELETRICISTA</td>
-       <td align="right">1 UTILIZAÇÃO</td>
+       <td align="right"></td>
      </tr>
       <tr>
        <td>ENCANADOR</td>
-       <td align="right">1 UTILIZAÇÃO</td>
+       <td align="right"></td>
      </tr>
       <tr>
-       <td>ENCANADOR</td>
-       <td align="right">1 UTILIZAÇÃO</td>
+       <td>CHUVEIROS COMPLETO</td>
+       <td align="right"></td>
      </tr>
      <tr>
        <td>DESENTUPIMENTO </td>
-       <td align="right">1 UTILIZAÇÃO</td>
+       <td align="right"></td>
      </tr>
      <tr>
        <td>VIDRACEIRO </td>
-       <td align="right">1 UTILIZAÇÃO</td>
-     </tr>
-     <tr>
-       <td>CHUVEIRO </td>
-       <td align="right">1 UTILIZAÇÃO</td>
-     </tr>
-     <tr>
-       <td>DESCONTO FRANQUIA DANOS ALÉTRICOS</td>
-       <td align="right">300,00</td>
-     </tr>
-     <tr>
-       <td>DESCONTO FRANQUIA VIDROS</td>
-       <td align="right">80,00</td>
+       <td align="right"></td>
      </tr>
     </table>
 </div>
@@ -248,7 +210,7 @@
   <div id="colum">
     <P style="font-size: 10px">
       Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
-       Capitais e Regiões Metropolitana 62 3432-3989<br>
+       <font size="3">Capitais e Regiões Metropolitana 62 3432-3989</font><br>
     </p>
       <!--<table id="t01">
        <tr>

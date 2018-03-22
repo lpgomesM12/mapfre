@@ -151,7 +151,6 @@
   </div>
 
   <br>
-
   <table class="table table-bordered">
       <thead>
         <tr>
@@ -162,6 +161,45 @@
       <tbody id="tbservico">
       </tbody>
     </table>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-10">
+      <select class="form-control" name="cobertura" id="cobertura">
+        <% Cobertura.all.each do |item| %>
+          <option value="<%=item.id%>"><%=item.nome%></option>
+        <%end%>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <button type="button" class="btn btn-default" onclick="addCobertura()">
+        <span class="glyphicon glyphicon-arrow-down text-primary"></span> Adicionar
+         </button>
+    </div>
+  </div>
+
+
+   <div class="panel panel-default">
+    <div class="panel-heading">Coberturas</div>
+    <div class="panel-body">
+        
+        <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Valor</th>
+          <th>Franquia</th>
+          <th></th>
+        </tr>
+      </thead>
+       <tbody id="tbcoberturas">
+       </tbody>
+    </table>
+
+     </div>
+    </div>
+
     </div>
    </div>
 
@@ -179,9 +217,56 @@
   </div>
   </div>
  </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <input type="hidden" name="cobertura_id" id="cobertura_id">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alterar Cobertura</h4>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+         <div class='col-lg-12'>
+           Valor 
+            <input type='text' id='valor' name='valor' class='form-control'>
+         </div>
+        </div>
+        <div class="row">
+        <br>
+        <div class='col-lg-12'>
+           Valor franquia
+           <input type='text' id='valor_franquia' name='valor_franquia' class='form-control'>
+        </div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="salvaCobertura()" data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
  <% end %>
 
 <script type="text/javascript">
+
+function modalCobertura(item){
+  
+  $("#cobertura_id").val(item.id);
+  $("#valor").val(item.valor);
+  $("#valor_franquia").val(item.valor_franquia);
+  $("#myModal").modal()
+}
+
+
 
 //função salvar/editar dados despesas
  function salva(){
@@ -196,6 +281,21 @@
         }
       })
   };
+
+
+ function addCobertura(){
+      $.ajax({
+        url: '/addcobertura',
+        data : {
+            cobertura_id:  $('#cobertura').val(),
+            apolice_id: '<%=@apolice.id%>'
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+      })
+  };
+
 
 function buscaServicos() {
   $.ajax({
@@ -231,6 +331,67 @@ function deleta_servico(id){
         })
   };
 
+
+http://localhost:3000/coberturas_apolice?apolice_id=16
+
+function buscaCoberturas() {
+  $.ajax({
+    url: '/coberturas_apolice',
+    data : {
+      apolice_id: '<%=@apolice.id%>'
+    },
+    success: function(data){
+          var html = "";
+          $("#tbcoberturas").empty();
+           for (var i in data) {
+             var item = data[i];
+             console.log(i);
+             if(item != null){
+
+              html += "<tr><td>"+item.nome+"</td>";
+              html += "<td>"+item.valor+"</td>";
+              html += "<td>"+item.valor_franquia+"</td>";
+              html += "<td Align='center'>";
+              html += " <button type='button' onclick='modalCobertura("+JSON.stringify(item)+")' data-toggle='tooltip' title='Excluir' class='btn btn-primary btn-xs' aria-label='Left Align'>";
+              html += " <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>";
+              html += " <button type='button' onclick='delete_cobertura("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
+              html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></td></tr>";
+             
+             }
+             
+           }; 
+
+           $("#tbcoberturas").append(html);        
+         }
+     })
+  }
+
+function salvaCobertura(){
+    $.ajax({
+        url: '/alteracobertura',
+        data : {
+            id:  $("#cobertura_id").val(),
+            valor: $("#valor").val(),
+            valor_franquia: $("#valor_franquia").val(),
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+   })
+}
+
+
+function delete_cobertura(id){
+    $.ajax({
+        url: '/deletecobertura',
+        data : {
+            id:  id
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+   })
+}
 
 function selecionar(val) {
   if (val == "CPF"){
@@ -274,9 +435,15 @@ $(function() {
    $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+  
+   $("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#valor_franquia").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   
 })
 
 
 buscaServicos();
+buscaCoberturas();
 
 </script>
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apolice_id: 
+  cobertura_id: 
+  valor: 9.99
+  valor_franquia: 9.99
+
+two:
+  apolice_id: 
+  cobertura_id: 
+  valor: 9.99
+  valor_franquia: 9.99
