@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   #root 'apolices#home'
   get 'apolices/relatorio'
   get "/relatorio", to: "apolices#relatorio", as: :relatorio
+  get "/relatorionovo", to: "apolices#relatorionovo", as: :relatorionovo
 
   match '/addservico', to: 'apolices#add_servico', via: 'get'
   match '/buscaservico', to: 'apolices#busca_servico', via: 'get'

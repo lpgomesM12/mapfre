@@ -55,7 +55,10 @@
                     <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
                   <% end %>
                   <%= link_to relatorio_path(id: apolice, format: :pdf), class: "btn btn-default btn-sm" do %>
-                    <span class="glyphicon glyphicon-print"></span> Imprimir
+                    <span class="glyphicon glyphicon-print"></span> 1°
+                  <% end %>
+                   <%= link_to relatorionovo_path(id: apolice, format: :pdf), class: "btn btn-default btn-sm" do %>
+                    <span class="glyphicon glyphicon-print"></span> 2°
                   <% end %>
               </div>
              </td>

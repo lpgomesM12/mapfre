@@ -75,7 +75,21 @@ def deleta_servico
   render :json => true
 end
 
+
+
 def relatorio
+  
+     @apolice = Apolice.find(params[:id])
+  
+     respond_to do |format|
+       format.html
+       format.pdf { render pdf: "reserva"
+        # footer: { center: "[page] de [topage]" }
+         }
+     end
+end
+
+def relatorionovo
 
    @apolice = Apolice.find(params[:id])
 
