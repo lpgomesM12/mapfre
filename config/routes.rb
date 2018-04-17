@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   match '/deletecobertura', to: 'apolices#delete_cobertura', via: 'get'
   match '/addcobertura', to: 'apolices#add_cobertura', via: 'get'
 
+
+  
 end
