@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :coberturas
   resources :apolices
-  #root 'apolices#index'
-  root 'apolices#home'
+  root 'apolices#index'
+  #root 'apolices#home'
   get 'apolices/relatorio'
   get "/relatorio", to: "apolices#relatorio", as: :relatorio
   get "/relatorionovo", to: "apolices#relatorionovo", as: :relatorionovo
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   match '/addcobertura', to: 'apolices#add_cobertura', via: 'get'
 
 
-  
+
 end
