@@ -105,7 +105,7 @@ def relatorionovo
   # GET /apolices.json
   def index
     if params[:q]
-      @q =  params[:q]
+      @q =  params[:q].downcase
       @apolices = Apolice.where("lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10)
     else
       @apolices = Apolice.page(params[:page]).per(10)
