@@ -1,0 +1,227 @@
+<meta charset="utf-8">
+
+<table style="width:100%" id="t02">
+  <tr>
+    <td>
+    <%= wicked_pdf_image_tag 'sonar.jpg', :style=>"width:220px;height:50px;"%>
+    </td>
+    <td align="right" style=" margin-top:0px">
+    </td>
+</tr>
+</table>
+<br>
+<table style="width:100%" id="t02">
+    <tr>
+      <td>
+         <table style="width:80%" id="t02">
+          <td align="right">
+            <strong align="center" style="font-size: 12px;">ADITIVO CLAUSULA 97 - PAGAMENTO DE FRANQUIA PORTÃO</strong><br><br>
+          </td>
+        </table>
+      </td>
+    </tr>
+</table>
+
+<table style="width:100%">
+  <caption  style="text-align:left;"><strong> Compreensivo Residencial</strong></caption>
+ <tr>
+   <th align="center">Ramo</th>
+   <th align="center">Seguradora</th>
+   <th align="center">Apólice N°</th>
+   <th align="center">Item</th>
+   <th align="center">Data da Proposta</th>
+ </tr>
+ <tr>
+   <td align="center"><%=@apolice.ramo%></td>
+   <td align="center"><%=@apolice.produto%></td>
+   <td align="center"><%=@apolice.apolice%></td>
+   <td align="center"><%=@apolice.item%></td>
+   <td align="center"><%=@apolice.data_proposta.blank? ? '' : @apolice.data_proposta.strftime("%d/%m/%Y")%></td>
+ </tr>
+</table>
+<br>
+<table style="width:100%">
+ <tr>
+   <!-- <th align="center">Proposta</th>
+   <th align="center">Renova Apólice N°</th> -->
+   <th align="center">Vig.: Início 24h do dia</th>
+   <th align="center">Término 24h do dia</th>
+ </tr>
+ <tr>
+   <!-- <td>d</td>
+   <td></td> -->
+   <td align="center"><%=@apolice.vig_inicio.blank? ? '' : @apolice.vig_inicio.strftime("%d/%m/%Y")%></td>
+   <td align="center"><%=@apolice.vig_termino.blank? ? '' :@apolice.vig_termino.strftime("%d/%m/%Y")%></td>
+ </tr>
+</table>
+<br>
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="left">Dados do Segurado</th>
+   <th align="left">Tipo de Pessoa</th>
+ </tr>
+ <tr>
+   <td><strong>Nome:</strong>   <%= @apolice.nome_segurado%></td>
+   <%if @apolice.cnpj%>
+     <td><strong>CNPJ</strong>  <%= @apolice.cpf%></td>
+     <%else%>
+     <td><strong>CPF</strong>  <%= @apolice.cpf%></td>
+   <%end%>
+ </tr>
+</table>
+<br>
+<table  id="t01" style="width:100%;">
+ <tr>
+   <th align="left" colspan="2">Dados do Risco</th>
+ </tr>
+ <tr>
+   <td><strong>Endereço:</strong> <%= @apolice.endereco%></td>
+   <td><strong>Apartamento:</strong> <%= @apolice.apartamento%></td>
+ </tr>
+ <tr>
+   <td><strong>Bairro:</strong> <%= @apolice.bairro%></td>
+   <td><strong>Cidade:</strong> <%= @apolice.cidade%></td>
+ </tr>
+ <tr>
+   <td><strong>CEP:</strong> <%= @apolice.cep%> </td>
+   <td><strong>UF:</strong> <%= @apolice.uf%></td>
+ </tr>
+</table>
+<br>
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="center">Cobertura Contratadas e Valores Máximos de Indenização</th>
+ </tr>
+</table>
+<div align="center" style="width:100%">
+    <table  style="width:90%" id="t02">
+     <tr>
+       <th align="left">Cobertura</th>
+       <th align="right">Valor</th>
+     </tr>
+     <tr>
+       <td>PAGAMENTO DE FRANQUIA PORTÕES</td>
+       <td align="right"></td>
+     </tr>
+    </table><br><br> 
+</div>
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="center">Procedimento em caso de sinistro</th>
+ </tr>
+</table>
+<div align="center" style="width:100%">
+    <table  style="width:90%" id="t02">
+     <tr>
+       <th align="left">Cobertura</th>
+     </tr>
+     <tr>
+       <td>ABRIR O SINISTRO NA CENTRAL (62) 3432-3989</td>
+     </tr>
+     <tr>
+       <td>VÁLIDO NA REDE CREDENCIADA SONARCLUB</td>
+     </tr>
+    </table><br>
+</div>
+
+  <div align="left">
+    <table id="t01" style="width:40%">
+     <tr>
+       <th align="center">Demonstrativo do Prêmio - Valores em R$</th>
+     </tr>
+    </table>
+  </div>
+  <table id="t03" style="width:100%">
+   <tr>
+     <td align="center">Prêmio Líquido<br> <%=number_to_currency(@apolice.valr_premioliquido , unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <!--<td align="center">Sonar Assistência<br> <%=number_to_currency(@apolice.valr_adicional, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>-->
+     <td align="center">Ad. de Fracionamento<br> <%=number_to_currency(@apolice.valr_custo, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">IOF<br> <%=number_to_currency(@apolice.valr_iof, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Prêmio Total<br><%=number_to_currency(@apolice.valr_premiototal, :unit => "R$ ", :separator => ",", :delimiter => ".") rescue nil%></td>
+   </tr>
+   <tr>
+     <td colspan="5" style="background-color: #cbcbcb;height: 50px;"><strong>Observações:</strong> <%=@apolice.desc_obs%><br></td>
+   </tr>
+  </table>
+
+  <div id="tudo"><br><br>
+  <div id="colum">
+    <!--<P style="font-size: 10px">
+      Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
+      . Capitais e Regiões Metropolitana 62 3432-3989<br>
+    </p>-->
+      <!--<table id="t01">
+       <tr>
+         <th align="center">Dados do Corretor</th>
+       </tr>
+      </table>
+      <P style="font-size: 11px">
+       Nome<br>
+       <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
+      </p>-->
+
+      <hr>
+      <table id="t02" style="width:100%">
+       <tr>
+         <!--<td>Código</td>-->
+         <td>Código SUSEP</td>
+         <td>Telefone</td>
+       </tr>
+       <tr>
+         <!--<th align="left">MAPFRE</th>-->
+         <th align="left">36413 00001020142714</th>
+         <th align="left">(62) 3432-3989</th>
+       </tr>
+       </table>
+    </div>
+
+    <div id="colum1">
+          <div id="box"></div>
+    </div>
+  </div>
+
+
+<style media="screen">
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      font-size: 11px;
+  }
+  table#t01 th {
+      background-color: #cbcbcb;
+  }
+  table#t02 th {
+    border:none !important;
+    border-collapse: collapse;
+  }
+  table#t02 td {
+    border:none !important;
+    border-collapse: collapse;
+  }
+  table#t02  {
+    border:none !important;
+    border-collapse: collapse;
+    padding:2px;
+  }
+  #box{
+  	width:300px;
+  	height:160px;
+  	border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+	}
+  #tudo {
+  	width: 100%;
+  }
+  #colum {
+  	position:relative;
+  	width: 55%;
+  	float: left;
+  }
+  #colum1 {
+    position:relative;
+    width: 45%;
+    top: 6px;
+    float: left;
+  }
+  </style>

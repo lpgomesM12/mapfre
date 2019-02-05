@@ -1,0 +1,2 @@
+json.extract! apolice, :id, :ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :created_at, :updated_at
+json.url apolice_url(apolice, format: :json)

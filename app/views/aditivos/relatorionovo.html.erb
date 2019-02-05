@@ -1,0 +1,266 @@
+<meta charset="utf-8">
+
+
+
+<table style="width:100%" id="t02">
+  <tr>
+    <td>
+    <%= wicked_pdf_image_tag 'sonar.png', :style=>"width:300px;height:80px;"%>
+    </td>
+    <td align="right" style=" margin-top:0px">
+          <strong>APÓLICE COLETIVA</strong>
+    </td>
+</tr>
+</table>
+
+<br>
+<br>
+<table style="width:100%" id="t02">
+    <tr>
+      <td>
+         <table style="width:80%" id="t02">
+          <td align="right">
+            <strong align="center" style="font-size: 12px;">APÓLICE DE SEGURO</strong><br>
+            <strong align="center" style="font-size: 12px;">MAPFRE RESIDENCIAL</strong>
+          </td>
+        </table>
+      </td>
+      <td align="right">
+        <table style="width:60%">
+          <tr>
+             <td align="center">
+            <strong>
+                N° Sorteio<br>
+                Mensal
+             </strong>
+             </td>
+          </tr>
+          <tr>
+           <td align="center">
+
+            </td>
+          </tr>
+       </table>
+       <table style="width:60%">
+         <tr>
+            <td align="center">
+              <%if @apolice.numr_mensal == nil%>
+                 <br>
+                <%else%>
+                  <%=@apolice.numr_mensal%>
+               <%end%>
+            </td>
+         </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+
+<br>
+
+<table style="width:100%">
+  <caption  style="text-align:left;"><strong> Compreensivo Residencial</strong></caption>
+ <tr>
+   <th align="center">Ramo</th>
+   <th align="center">Produto</th>
+   <th align="center">Apólice N°</th>
+   <th align="center">Item</th>
+   <th align="center">Data da Proposta</th>
+ </tr>
+ <tr>
+   <td align="center"><%=@apolice.ramo%></td>
+   <td align="center"><%=@apolice.produto%></td>
+   <td align="center"><%=@apolice.apolice%></td>
+   <td align="center"><%=@apolice.item%></td>
+   <td align="center"><%=@apolice.data_proposta.blank? ? '' : @apolice.data_proposta.strftime("%d/%m/%Y")%></td>
+ </tr>
+</table>
+<br>
+<table style="width:100%">
+ <tr>
+   <!-- <th align="center">Proposta</th>
+   <th align="center">Renova Apólice N°</th> -->
+   <th align="center">Vig.: Início 24h do dia</th>
+   <th align="center">Término 24h do dia</th>
+ </tr>
+ <tr>
+   <!-- <td>d</td>
+   <td></td> -->
+   <td align="center"><%=@apolice.vig_inicio.blank? ? '' : @apolice.vig_inicio.strftime("%d/%m/%Y")%></td>
+   <td align="center"><%=@apolice.vig_termino.blank? ? '' :@apolice.vig_termino.strftime("%d/%m/%Y")%></td>
+ </tr>
+</table>
+<br>
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="left">Dados do Segurado</th>
+   <th align="left">Tipo de Pessoa</th>
+ </tr>
+ <tr>
+   <td><strong>Nome:</strong>   <%= @apolice.nome_segurado%></td>
+   <td><strong>CPF:</strong>   <%= @apolice.cpf%></td>
+ </tr>
+</table>
+<br>
+<table  id="t01" style="width:100%;">
+ <tr>
+   <th align="left" colspan="2">Dados do Risco</th>
+ </tr>
+ <tr>
+   <td colspan="2"><strong>Endereço:</strong>  <%= @apolice.endereco%></td>
+ </tr>
+ <tr>
+   <td><strong>Bairro:</strong> <%= @apolice.bairro%></td>
+   <td><strong>Cidade:</strong> <%= @apolice.cidade%></td>
+ </tr>
+ <tr>
+   <td><strong>CEP:</strong> <%= @apolice.cep%> </td>
+   <td><strong>UF:</strong> <%= @apolice.uf%></td>
+ </tr>
+</table>
+
+<br>
+
+<table id="t01" style="width:100%">
+ <tr>
+   <th align="center">Cobertura Contratadas e Valores Máximos de Indenizalção</th>
+ </tr>
+</table>
+
+<br>
+
+<div align="center" style="width:100%">
+    <table  style="width:90%" id="t02">
+     <tr>
+       <th align="left">Cobertura</th>
+       <th align="right">Valor</th>
+       <th align="right">Franquias</th>
+     </tr>
+     <tr>
+       <td>INC. / RAIO EXPL. / QUEDA AERONAVE</td>
+       <td align="right">120.000,00</td>
+       <td align="right">450,00</td>
+     </tr>
+     <tr>
+       <td>ROUBO / FURTO - VERBA ÚNICA</td>
+       <td align="right">6.000,00</td>
+       <td align="right">0,00</td>
+     </tr>
+     <tr>
+       <td>VENDAVAL / IMPACTO VEICULO</td>
+       <td align="right">15.000,00</td>
+       <td align="right">450,00</td>
+     </tr>
+     <tr>
+       <td>QUEBRA DE VIDROS</td>
+       <td align="right">2.000,00</td>
+       <td align="right">160,00</td>
+     </tr>
+     <tr>
+       <td>DANOS ELÈTRICOS</td>
+       <td align="right">8.000,00</td>
+       <td align="right">600,00</td>
+     </tr>
+     <tr>
+       <td>PERDA / PAGAMENTO DE ALUGUEL</td>
+       <td align="right">6.000,00</td>
+       <td align="right">0,00</td>
+     </tr>
+     <tr>
+       <td>RESP.CIVIL - IMÓVEL FAMILIAR</td>
+       <td align="right">10.000,00</td>
+       <td align="right">0,00</td>
+     </tr>
+    </table>
+</div>
+<br>
+<div align="left">
+  <table id="t01" style="width:28%">
+   <tr>
+     <th align="center">Assistência - Perfil PLUS</th>
+   </tr>
+  </table>
+</div>
+<P style="font-size: 10px">Serviços disponíveis no Perfil de Assistência PLUS: hidráulica,<br>
+  eletrícista, vidraceiro e indicação de profissionais.</p>
+
+  <div align="left">
+    <table id="t01" style="width:40%">
+     <tr>
+       <th align="center">Demostrativo do Prêmio - Valores em R$</th>
+     </tr>
+    </table>
+  </div>
+  <table id="t03" style="width:100%">
+   <tr>
+     <td align="center">Prêmio Líquido<br> <%=number_to_currency(@apolice.valr_premioliquido , unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Adicional<br> <%=number_to_currency(@apolice.valr_adicional, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Custo<br> <%=number_to_currency(@apolice.valr_custo, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">IOF<br> <%=number_to_currency(@apolice.valr_iof, unit: "R$ ", separator: ",", delimiter: "") rescue nil%></td>
+     <td align="center">Prêmio Total<br><%=number_to_currency(@apolice.valr_premiototal, :unit => "R$ ", :separator => ",", :delimiter => ".") rescue nil%></td>
+   </tr>
+   <tr>
+     <td colspan="5" style="background-color: #cbcbcb;height: 50px;"><strong>Observações:</strong> <%=@apolice.desc_obs%><br></td>
+   </tr>
+  </table>
+
+  <P style="font-size: 10px">
+    Para solicitação dos Serviços de Assistência ou em caso de Sinistro, ligue:<br>
+    . Capitais: 4002 1000 <br>
+    . Demais Regiões: 0800 775 1000
+  </p>
+
+  <div align="left">
+    <table id="t01" style="width:28%">
+     <tr>
+       <th align="center">Dados do Corretor</th>
+     </tr>
+    </table>
+  </div>
+<P style="font-size: 11px">
+ Nome<br>
+ <strong>SONAR CORRETORA DE SEGUROS LTD</strong><br>
+</p>
+
+<div align="left" style="width:80%">
+  <hr>
+  <table  style="width:100%" id="t02">
+   <tr>
+     <td>Código</td>
+     <td>Código SUSEP</td>
+     <td>Telefone</td>
+   </tr>
+   <tr>
+     <th align="left">MAPFRE</th>
+     <th align="left">36413 00001020142714</th>
+     <th align="left">(62) 3432-3989</th>
+   </tr>
+   </table>
+</div>
+
+<style media="screen">
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      font-size: 11px;
+  }
+  table#t01 th {
+      background-color: #cbcbcb;
+  }
+
+  table#t02 th {
+    border:none !important;
+    border-collapse: collapse;
+  }
+
+  table#t02 td {
+    border:none !important;
+    border-collapse: collapse;
+  }
+  table#t02  {
+    border:none !important;
+    border-collapse: collapse;
+    padding:2px;
+  }
+
+  </style>

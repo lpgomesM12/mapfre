@@ -1,0 +1,380 @@
+<%= form_for(@apolice) do |f| %>
+  <% if @apolice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@apolice.errors.count, "error") %> prohibited this apolice from being saved:</h2>
+
+      <ul>
+      <% @apolice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-3">
+     <%= f.label :ramo %><br>
+     <%= f.text_field :ramo, :class => "form-control" %>
+   </div>
+  <div class="col-lg-3">
+    <%= f.label :seguradora %><br>
+    <%= f.text_field :produto, :class => "form-control"%>
+   </div>
+    <div class="col-lg-3">
+      <%= f.label :apolice %><br>
+      <%= f.text_field :apolice, :class => "form-control"%>
+    </div>
+    <div class="col-lg-3">
+      <%= f.label :item %><br>
+      <%= f.text_field :item, :class => "form-control" %>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-lg-2">
+    <%= f.label :data_proposta %><br>
+    <%= f.text_field :data_proposta, :class => "form-control"  %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :vig_inicio %><br>
+    <%= f.text_field :vig_inicio, :class => "form-control"  %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :vig_termino %><br>
+    <%= f.text_field :vig_termino, :class => "form-control"  %>
+  </div>
+  <!--<div class="col-lg-2">
+   <label>N° Sorteio Mensal</label>
+    <%= f.text_field :numr_mensal, :class => "form-control"  %>
+  </div>-->
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= f.label :nome_segurado %><br>
+    <%= f.text_field :nome_segurado, :class => "form-control"  %>
+
+  </div>
+  <div class="col-lg-1">
+    <div class="radio">
+     <label><input type="radio" onclick="selecionar('CPF')" id="radiocpf" checked name="optradio">CPF</label>
+    </div>
+    <div class="radio">
+     <label><input type="radio" onclick="selecionar('CNPJ')" id="radiocnpj" name="optradio">CNPJ</label>
+    </div>
+    <%= f.hidden_field :cnpj %>
+ </div>
+  <div class="col-lg-3">
+   <label id="cpf">CPF</label>
+   <label id="cnpj">CNPJ</label>
+    <%= f.text_field :cpf, :class => "form-control"  %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-7">
+    <%= f.label :endereco %><br>
+    <%= f.text_field :endereco, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <%= f.label :apartamento %><br>
+    <%= f.text_field :apartamento, :class => "form-control" %>
+  </div>
+  <div class="col-lg-3">
+    <%= f.label :bairro %><br>
+    <%= f.text_field :bairro, :class => "form-control" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <%= f.label :cidade %><br>
+    <%= f.text_field :cidade, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>CEP</label>
+    <%= f.text_field :cep, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>UF</label>
+    <%= f.text_field :uf, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-2">
+    <label>Prêmio líquido</label>
+    <%= f.text_field :valr_premioliquido, :class => "form-control" %>
+  </div>
+  <!--<div class="col-lg-2">
+    <label>Sonar Assistencia</label>
+    <%= f.text_field :valr_adicional, :class => "form-control" %>
+  </div>-->
+
+  <div class="col-lg-2">
+    <label>Ad. de Fracionamento</label>
+    <%= f.text_field :valr_custo, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>IOF</label>
+    <%= f.text_field :valr_iof, :class => "form-control" %>
+  </div>
+  <div class="col-lg-2">
+    <label>Prêmio Total</label>
+    <%= f.text_field :valr_premiototal, :class => "form-control" %>
+  </div>
+</div>
+
+
+<%= f.hidden_field :page, :value=> "aditivo"%>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <label>Observações</label>
+      <%= f.text_area :desc_obs, :class => "form-control" %>
+    </div>
+  </div>
+
+  <hr>
+
+
+<div class="row mar-bot40">
+<div class="col-lg-8" >
+ <div class="btn-group">
+    <button type="submit" value="Submit" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+    </button>
+    <%= link_to aditivos_path, :class => "btn btn-default btn-sm" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+      <% end %>
+  </div>
+  </div>
+ </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <input type="hidden" name="cobertura_id" id="cobertura_id">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alterar Cobertura</h4>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+         <div class='col-lg-12'>
+           Valor 
+            <input type='text' id='valor' name='valor' class='form-control'>
+         </div>
+        </div>
+        <div class="row">
+        <br>
+        <div class='col-lg-12'>
+           Valor franquia
+           <input type='text' id='valor_franquia' name='valor_franquia' class='form-control'>
+        </div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="salvaCobertura()" data-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+ <% end %>
+
+<script type="text/javascript">
+
+function modalCobertura(item){
+  
+  $("#cobertura_id").val(item.id);
+  $("#valor").val(item.valor);
+  $("#valor_franquia").val(item.valor_franquia);
+  $("#myModal").modal()
+}
+
+
+
+//função salvar/editar dados despesas
+ function salva(){
+      $.ajax({
+        url: '/addservico',
+        data : {
+            servico:  $('#servico').val(),
+            apolice_id: '<%=@apolice.id%>'
+        },
+        success: function(data){
+          buscaServicos();
+        }
+      })
+  };
+
+
+ function addCobertura(){
+      $.ajax({
+        url: '/addcobertura',
+        data : {
+            cobertura_id:  $('#cobertura').val(),
+            apolice_id: '<%=@apolice.id%>'
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+      })
+  };
+
+
+function buscaServicos() {
+  $.ajax({
+    url: '/buscaservico',
+    data : {
+        apolice_id: '<%=@apolice.id%>'
+    },
+    success: function(data){
+          var html = "";
+          $("#tbservico").empty();
+           for (var i in data) {
+             var item = data[i];
+             html += "<tr><td>"+item.nome+"</td>";
+             html += "<td Align='center'>";
+             html += " <button type='button' onclick='deleta_servico("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
+             html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></tr>";
+           };
+           $("#tbservico").append(html);
+         }
+     })
+  }
+
+  //função salvar/editar dados despesas
+function deleta_servico(id){
+        $.ajax({
+          url: '/deletaservico',
+          data : {
+              servico_id:  id
+          },
+          success: function(data){
+            buscaServicos();
+          }
+        })
+  };
+
+
+http://localhost:3000/coberturas_apolice?apolice_id=16
+
+function buscaCoberturas() {
+  $.ajax({
+    url: '/coberturas_apolice',
+    data : {
+      apolice_id: '<%=@apolice.id%>'
+    },
+    success: function(data){
+          var html = "";
+          $("#tbcoberturas").empty();
+           for (var i in data) {
+             var item = data[i];
+             console.log(i);
+             if(item != null){
+
+              html += "<tr><td>"+item.nome+"</td>";
+              html += "<td>"+item.valor+"</td>";
+              html += "<td>"+item.valor_franquia+"</td>";
+              html += "<td Align='center'>";
+              html += " <button type='button' onclick='modalCobertura("+JSON.stringify(item)+")' data-toggle='tooltip' title='Excluir' class='btn btn-primary btn-xs' aria-label='Left Align'>";
+              html += " <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>";
+              html += " <button type='button' onclick='delete_cobertura("+item.id+")' data-toggle='tooltip' title='Excluir' class='btn btn-danger btn-xs' aria-label='Left Align'>";
+              html += "  <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></td></tr>";
+             
+             }
+             
+           }; 
+
+           $("#tbcoberturas").append(html);        
+         }
+     })
+  }
+
+function salvaCobertura(){
+    $.ajax({
+        url: '/alteracobertura',
+        data : {
+            id:  $("#cobertura_id").val(),
+            valor: $("#valor").val(),
+            valor_franquia: $("#valor_franquia").val(),
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+   })
+}
+
+
+function delete_cobertura(id){
+    $.ajax({
+        url: '/deletecobertura',
+        data : {
+            id:  id
+        },
+        success: function(data){
+          buscaCoberturas();
+        }
+   })
+}
+
+function selecionar(val) {
+  if (val == "CPF"){
+      $("#cpf").show();
+      $("#cnpj").hide();
+      $("#apolice_cnpj").val(false);
+      $("#apolice_cpf").mask("999.999.999-99");
+  }
+  if (val == "CNPJ"){
+      $("#cnpj").show();
+      $("#cpf").hide();
+      $("#apolice_cnpj").val(true);
+      $("#apolice_cpf").mask("99.999.999/9999-99");
+  }
+}
+
+
+
+jQuery(function($){
+  $("#cnpj").hide();
+  $("#apolice_data_proposta").mask("99/99/9999");
+  $("#apolice_vig_inicio").mask("99/99/9999");
+  $("#apolice_vig_termino").mask("99/99/9999");
+
+
+  var x = $("#apolice_cnpj").val();
+   if(x){
+        $("#apolice_cpf").mask("99.999.999/9999-99");
+          $("#radiocnpj").attr("checked",true);
+          $("#apolice_cnpj").val(true);
+     }else{
+        $("#apolice_cpf").mask("999.999.999-99");
+        $("#radiocpf").attr("checked",true);
+        $("#apolice_cnpj").val(false);
+    }
+});
+
+$(function() {
+   $("#apolice_valr_premioliquido").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_adicional").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+  
+   $("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#valor_franquia").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   
+})
+
+
+buscaServicos();
+buscaCoberturas();
+
+</script>
+

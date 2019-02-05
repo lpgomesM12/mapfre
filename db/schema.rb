@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322023217) do
+ActiveRecord::Schema.define(version: 20190204175836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180322023217) do
     t.string   "numr_mensal"
     t.boolean  "cnpj"
     t.string   "apartamento"
+    t.string   "page"
   end
 
   create_table "coberturaapolices", force: :cascade do |t|

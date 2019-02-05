@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
   resources :coberturas
   resources :apolices
-  root 'apolices#index'
+  resources :aditivos
+  root 'static#home'
   #root 'apolices#home'
   get 'apolices/relatorio'
   get "/relatorio", to: "apolices#relatorio", as: :relatorio
   get "/relatorionovo", to: "apolices#relatorionovo", as: :relatorionovo
 
+
+  get "/relatorioaditivo", to: "aditivos#relatorio", as: :relatorioaditivo
+
+  get "/home", to: "static#home", as: :home
+
+  
   match '/addservico', to: 'apolices#add_servico', via: 'get'
   match '/buscaservico', to: 'apolices#busca_servico', via: 'get'
   match '/deletaservico', to: 'apolices#deleta_servico', via: 'get'

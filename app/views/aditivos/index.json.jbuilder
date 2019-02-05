@@ -1,0 +1,1 @@
+json.array! @apolices, partial: 'apolices/apolice', as: :apolice

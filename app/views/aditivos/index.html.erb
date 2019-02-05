@@ -1,0 +1,74 @@
+<br>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_tag nil, method: 'GET' do %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <input id="q" name="q" type="text" value="<%=@q%>" class="form-control" placeholder="Pesquise pelo nome ou apartamento">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" >Buscar</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <br />
+
+<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">Lista de apólices</div>
+  <div class="panel-body">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+
+          <th>Nome segurado</th>
+          <th>N° Apolice</th>
+          <th>CPF</th>
+          <th>Prêmio liquido</th>
+          <th>Adicional</th>
+          <th>Custo</th>
+          <th>IOF</th>
+          <th>Prêmio Total</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @apolices.each do |apolice| %>
+          <tr>
+            <td><%= apolice.nome_segurado %></td>
+            <td><%= apolice.apolice %></td>
+            <td><%= apolice.cpf %></td>
+            <td><%= apolice.valr_premioliquido %></td>
+            <td><%= apolice.valr_adicional %></td>
+            <td><%= apolice.valr_custo %></td>
+            <td><%= apolice.valr_iof %></td>
+            <td><%= apolice.valr_premiototal %></td>
+            <td align='right'>
+              <div class="btn-group">
+                  <%= link_to edit_aditivo_path(apolice), class: "btn btn-default btn-sm" do %>
+                    <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                  <% end %>
+                 <%= link_to apolice, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
+                    <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                  <% end %>
+                  <%= link_to relatorioaditivo_path(id: apolice, format: :pdf), class: "btn btn-default btn-sm" do %>
+                    <span class="glyphicon glyphicon-print"></span> 1°
+                  <% end %>
+              </div>
+             </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= paginate @apolices, :window => 2 %>
+
+<br>
+<%= link_to new_aditivo_path, class: "btn btn-default btn-sm" do %>
+       <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>

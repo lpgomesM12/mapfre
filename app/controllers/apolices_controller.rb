@@ -76,7 +76,6 @@ def deleta_servico
 end
 
 
-
 def relatorio
   
      @apolice = Apolice.find(params[:id])
@@ -106,9 +105,9 @@ def relatorionovo
   def index
     if params[:q]
       @q =  params[:q].downcase
-      @apolices = Apolice.where("lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10)
+      @apolices = Apolice.where("page IS NULL lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10)
     else
-      @apolices = Apolice.page(params[:page]).per(10)
+      @apolices = Apolice.where("page IS NULL and (ramo IS NOT NULL and produto IS NOT NULL and apolice IS NOT NULL)").page(params[:page]).per(10)
     end
   end
 
@@ -141,7 +140,6 @@ def relatorionovo
           coberturaapolice.save
         end
 
-
         format.html { redirect_to edit_apolice_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
         format.json { render :show, status: :created, location: @apolice }
       else
@@ -167,8 +165,16 @@ def relatorionovo
 
     respond_to do |format|
       if @apolice.save
-        format.html { redirect_to @apolice, notice: 'Cadastro realizado com sucesso.' }
-        format.json { render :show, status: :created, location: @apolice }
+
+        if @apolice.page == "aditivo"
+          format.html { redirect_to aditivos_path, notice: 'Cadastro realizado com sucesso.' }
+          format.json { render :show, status: :created, location: @apolice }
+        else
+          format.html { redirect_to @apolice, notice: 'Cadastro realizado com sucesso.' }
+          format.json { render :show, status: :created, location: @apolice }
+        end
+
+      
       else
         format.html { render :new }
         format.json { render json: @apolice.errors, status: :unprocessable_entity }
@@ -181,11 +187,23 @@ def relatorionovo
   def update
     respond_to do |format|
       if @apolice.update(apolice_params)
-        format.html { redirect_to @apolice, notice: 'Registro alterado com sucesso.' }
-        format.json { render :show, status: :ok, location: @apolice }
+
+        if @apolice.page == "aditivo"
+          format.html { redirect_to aditivos_path, notice: 'Registro alterado com sucesso.' }
+          format.json { render :show, status: :ok, location: @apolice }      
+        else
+          format.html { redirect_to @apolice, notice: 'Registro alterado com sucesso.' }
+          format.json { render :show, status: :ok, location: @apolice }  
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @apolice.errors, status: :unprocessable_entity }
+
+        if @apolice.page == "aditivo"
+          format.html { render :edit }
+          format.json { render json: @apolice.errors, status: :unprocessable_entity }   
+        else
+          format.html { render :edit }
+          format.json { render json: @apolice.errors, status: :unprocessable_entity }
+        end     
       end
     end
   end
@@ -208,6 +226,6 @@ def relatorionovo
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apolice_params
-      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :numr_mensal, :cnpj, :apartamento)
+      params.require(:apolice).permit(:ramo, :produto, :apolice, :item, :data_proposta, :vig_inicio, :vig_termino, :nome_segurado, :cpf, :endereco, :cidade, :bairro, :cep, :uf, :valr_premioliquido, :valr_adicional, :valr_custo, :valr_iof, :valr_premiototal, :desc_obs, :numr_mensal, :cnpj, :apartamento, :page)
     end
 end
