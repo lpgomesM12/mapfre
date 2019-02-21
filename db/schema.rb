@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190204175836) do
+ActiveRecord::Schema.define(version: 20190221191310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,13 @@ ActiveRecord::Schema.define(version: 20190204175836) do
     t.string   "valr_iof"
     t.string   "valr_premiototal"
     t.string   "desc_obs"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "numr_mensal"
     t.boolean  "cnpj"
     t.string   "apartamento"
     t.string   "page"
+    t.string   "valor_franquiaportao"
   end
 
   create_table "coberturaapolices", force: :cascade do |t|

@@ -121,6 +121,11 @@
     <label>Prêmio Total</label>
     <%= f.text_field :valr_premiototal, :class => "form-control" %>
   </div>
+
+  <div class="col-lg-2">
+    <label>Valor Franquia Portão</label>
+    <%= f.text_field :valor_franquiaportao, :class => "form-control" %>
+  </div>
 </div>
 
 
@@ -366,7 +371,9 @@ $(function() {
    $("#apolice_valr_custo").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#apolice_valr_iof").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#apolice_valr_premiototal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
-  
+   $("#apolice_valor_franquiaportao").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+ 
+
    $("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#valor_franquia").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    
