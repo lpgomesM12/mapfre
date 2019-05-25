@@ -42,6 +42,7 @@ end
   # GET /apolices/new
   def new
     @apolice = Apolice.new
+    @apolice.page = "proposta"
 
     respond_to do |format|
     if @apolice.save

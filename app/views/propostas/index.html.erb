@@ -32,6 +32,7 @@
           <th>Custo</th>
           <th>IOF</th>
           <th>Prêmio Total</th>
+          <th>Situação</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -47,18 +48,21 @@
             <td><%= apolice.valr_custo %></td>
             <td><%= apolice.valr_iof %></td>
             <td><%= apolice.valr_premiototal %></td>
+            <td>
+               <%=  apolice.flag_propostaaceita == true ? "Aceita" : "Não aceita" %>                 
+             </td>
             <td align='right'>
               <div class="btn-group">
                   <%= link_to edit_proposta_path(apolice), class: "btn btn-default btn-sm" do %>
-                    <span class="glyphicon glyphicon-pencil text-primary"></span> Editar
+                    <span class="glyphicon glyphicon-pencil text-primary"></span>
                   <% end %>
                  <%= link_to apolice, method: :delete, data: { confirm: 'Deseja excluir o registro?' }, class: "btn btn-default btn-sm" do %>
-                    <span class="glyphicon glyphicon-trash text-danger"></span> Excluir
+                    <span class="glyphicon glyphicon-trash text-danger"></span>
                   <% end %>
                   <%= link_to relatorioproposta_path(id: apolice, format: :pdf), class: "btn btn-default btn-sm" do %>
                     <span class="glyphicon glyphicon-print"></span> 1°
                   <% end %>
-                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" onclick="copiar('<%=apolice.id%>')" data-target="#smallModal">Copiar Link</button>
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" onclick="copiar('<%=apolice.id%>')" data-target="#smallModal">Link</button>
               </div>
              </td>
           </tr>

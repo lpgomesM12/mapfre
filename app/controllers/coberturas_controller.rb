@@ -26,6 +26,8 @@ class CoberturasController < ApplicationController
   def create
     @cobertura = Cobertura.new(cobertura_params)
 
+    @apolice.page = "proposta"
+
     respond_to do |format|
       if @cobertura.save
         format.html { redirect_to @cobertura, notice: 'Cobertura was successfully created.' }
