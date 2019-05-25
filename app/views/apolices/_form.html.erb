@@ -16,9 +16,17 @@
      <%= f.label :ramo %><br>
      <%= f.text_field :ramo, :class => "form-control" %>
    </div>
+  <div class="col-lg-3">
+    <%= f.label :produto %><br>
+    <%= f.text_field :produto, :class => "form-control"%>
+   </div>
     <div class="col-lg-3">
       <%= f.label :apolice %><br>
       <%= f.text_field :apolice, :class => "form-control"%>
+    </div>
+    <div class="col-lg-3">
+      <%= f.label :item %><br>
+      <%= f.text_field :item, :class => "form-control" %>
     </div>
   </div>
 
@@ -250,7 +258,6 @@
  <% end %>
 
 <script type="text/javascript">
-
 function modalCobertura(item){
   
   $("#cobertura_id").val(item.id);
@@ -258,9 +265,6 @@ function modalCobertura(item){
   $("#valor_franquia").val(item.valor_franquia);
   $("#myModal").modal()
 }
-
-
-
 //função salvar/editar dados despesas
  function salva(){
       $.ajax({
@@ -274,8 +278,6 @@ function modalCobertura(item){
         }
       })
   };
-
-
  function addCobertura(){
       $.ajax({
         url: '/addcobertura',
@@ -288,8 +290,6 @@ function modalCobertura(item){
         }
       })
   };
-
-
 function buscaServicos() {
   $.ajax({
     url: '/buscaservico',
@@ -310,7 +310,6 @@ function buscaServicos() {
          }
      })
   }
-
   //função salvar/editar dados despesas
 function deleta_servico(id){
         $.ajax({
@@ -323,10 +322,7 @@ function deleta_servico(id){
           }
         })
   };
-
-
 http://localhost:3000/coberturas_apolice?apolice_id=16
-
 function buscaCoberturas() {
   $.ajax({
     url: '/coberturas_apolice',
@@ -340,7 +336,6 @@ function buscaCoberturas() {
              var item = data[i];
              console.log(i);
              if(item != null){
-
               html += "<tr><td>"+item.nome+"</td>";
               html += "<td>"+item.valor+"</td>";
               html += "<td>"+item.valor_franquia+"</td>";
@@ -353,12 +348,10 @@ function buscaCoberturas() {
              }
              
            }; 
-
            $("#tbcoberturas").append(html);        
          }
      })
   }
-
 function salvaCobertura(){
     $.ajax({
         url: '/alteracobertura',
@@ -372,8 +365,6 @@ function salvaCobertura(){
         }
    })
 }
-
-
 function delete_cobertura(id){
     $.ajax({
         url: '/deletecobertura',
@@ -385,7 +376,6 @@ function delete_cobertura(id){
         }
    })
 }
-
 function selecionar(val) {
   if (val == "CPF"){
       $("#cpf").show();
@@ -400,16 +390,11 @@ function selecionar(val) {
       $("#apolice_cpf").mask("99.999.999/9999-99");
   }
 }
-
-
-
 jQuery(function($){
   $("#cnpj").hide();
   $("#apolice_data_proposta").mask("99/99/9999");
   $("#apolice_vig_inicio").mask("99/99/9999");
   $("#apolice_vig_termino").mask("99/99/9999");
-
-
   var x = $("#apolice_cnpj").val();
    if(x){
         $("#apolice_cpf").mask("99.999.999/9999-99");
@@ -421,7 +406,6 @@ jQuery(function($){
         $("#apolice_cnpj").val(false);
     }
 });
-
 $(function() {
    $("#apolice_valr_premioliquido").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#apolice_valr_adicional").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
@@ -433,10 +417,6 @@ $(function() {
    $("#valor_franquia").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    
 })
-
-
 buscaServicos();
 buscaCoberturas();
-
 </script>
-

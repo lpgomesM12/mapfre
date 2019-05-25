@@ -57,7 +57,7 @@ end
           coberturaapolice.save
         end
 
-        format.html { redirect_to edit_apolice_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
+        format.html { redirect_to edit_proposta_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
         format.json { render :show, status: :created, location: @apolice }
       else
         format.html { render :new }
