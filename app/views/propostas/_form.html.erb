@@ -16,11 +16,21 @@
      <%= f.label :ramo %><br>
      <%= f.text_field :ramo, :class => "form-control" %>
    </div>
+  <div class="col-lg-3">
+    <%= f.label :produto %><br>
+    <%= f.text_field :produto, :class => "form-control"%>
+   </div>
     <div class="col-lg-3">
       <%= f.label :apolice %><br>
       <%= f.text_field :apolice, :class => "form-control"%>
     </div>
+    <div class="col-lg-3">
+      <%= f.label :item %><br>
+      <%= f.text_field :item, :class => "form-control" %>
+    </div>
   </div>
+
+  <%= f.hidden_field :page, :value=> "proposta"%>
 
 <div class="row">
   <div class="col-lg-2">

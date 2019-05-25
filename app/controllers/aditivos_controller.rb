@@ -4,10 +4,8 @@ class AditivosController < ApplicationController
       
       include ActionView::Helpers::NumberHelper
  
-    def relatorio
-      
+    def relatorio    
          @apolice = Apolice.find(params[:id])
-      
          respond_to do |format|
            format.html
            format.pdf { render pdf: "reserva"
