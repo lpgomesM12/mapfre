@@ -33,9 +33,19 @@
         <h4 class="modal-title">Identificação</h4>
       </div>
       <div class="modal-body">
+
+        <div class="col-lg-12">
+          <div class="radio">
+          <label><input type="radio" onclick="selecionar('CPF')" id="radiocpf" checked name="optradio">CPF</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" onclick="selecionar('CNPJ')" id="radiocnpj" name="optradio">CNPJ</label>
+          </div>
+      </div>
+
        <div class="row">
          <div class='col-lg-12'>
-            CPF 
+            CPF/CPF 
             <input type='text' id='cpf' name='cpf' class='form-control'>
          </div>
         </div>
