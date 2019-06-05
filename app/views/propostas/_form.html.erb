@@ -20,6 +20,14 @@
     <%= f.label :data_proposta %><br>
     <%= f.text_field :data_proposta, :class => "form-control"  %>
    </div>
+   <div class="col-lg-2">
+    <%= f.label :valor_mensal %><br>
+    <%= f.text_field :valor_mensal, :class => "form-control"  %>
+   </div>
+    <div class="col-lg-2">
+    <label>Quantidade de parcelas</label>
+    <%= f.text_field :qtd_parcelas, :class => "form-control"  %>
+   </div>
   </div>
 
 <div class="row">
@@ -403,6 +411,7 @@ $(function() {
   
    $("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    $("#valor_franquia").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
+   $("#apolice_valor_mensal").maskMoney({showSymbol:true, symbol:"R$", decimal:",", thousands:"."});
    
 })
 buscaServicos();
