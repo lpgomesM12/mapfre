@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190605141709) do
+ActiveRecord::Schema.define(version: 20190605145053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20190605141709) do
     t.boolean  "flag_propostaaceita"
     t.decimal  "valor_mensal",         precision: 10, scale: 2
     t.string   "qtd_parcelas"
+    t.datetime "data_propostaaceita"
   end
 
   create_table "coberturaapolices", force: :cascade do |t|

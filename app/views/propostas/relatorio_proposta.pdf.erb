@@ -202,6 +202,24 @@
    </tr>
   </table>
 
+
+  <br><br>
+  <table style="width:100%">
+  <tr>
+    <!-- <th align="center">Proposta</th>
+    <th align="center">Renova Apólice N°</th> -->
+    <th align="center" colspan="2">Proposta aceita eletronicamente</th>
+  </tr>
+  <tr>
+    <!-- <td>d</td>
+    <td></td> -->
+    <td align="center"><strong>Data:</strong> <%=@apolice.data_propostaaceita.blank? ? '' : @apolice.data_propostaaceita.strftime("%d/%m/%Y %H:%M")%></td>
+    <td align="center"><strong>Link:</strong> https://mapfre.herokuapp.com/visualizarproposta?id=<%=@apolice.id%></td>
+  </tr>
+  </table>
+
+<br>
+
   <div id="tudo">
   <div id="colum">
     <P style="font-size: 10px">
