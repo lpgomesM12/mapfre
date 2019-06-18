@@ -53,6 +53,9 @@
              </td>
             <td align='right'>
               <div class="btn-group">
+                 <%= link_to new_proposta_path(id: apolice.id), class: "btn btn-default btn-sm" do %>
+                    <span class="glyphicon glyphicon-transfer text-primary"></span>
+                  <% end %>
                   <%= link_to edit_proposta_path(apolice), class: "btn btn-default btn-sm" do %>
                     <span class="glyphicon glyphicon-pencil text-primary"></span>
                   <% end %>
