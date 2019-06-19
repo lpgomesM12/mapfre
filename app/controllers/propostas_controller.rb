@@ -43,7 +43,7 @@ end
   # GET /apolices/new
   def new
   
-    @apolice = Apolice.new
+    @apolice = Apolice.new                                                                                                           
     if !params[:id].blank?
        apolice = Apolice.find(params[:id])
        
