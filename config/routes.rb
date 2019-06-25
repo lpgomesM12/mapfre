@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :apolices
   resources :aditivos
   resources :propostas
-  #root 'static#home'
-  root 'apolices#home'
+  root 'static#home'
+  #root 'apolices#home'
   get 'apolices/relatorio'
   get "/relatorio", to: "apolices#relatorio", as: :relatorio
   get "/relatorionovo", to: "apolices#relatorionovo", as: :relatorionovo
