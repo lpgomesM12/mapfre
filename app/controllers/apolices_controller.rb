@@ -125,28 +125,58 @@ def relatorionovo
 
   # GET /apolices/new
   def new
-    @apolice = Apolice.new
-
-    respond_to do |format|
-    if @apolice.save
-        coberturas = Cobertura.all
-      
-        coberturas.each do |item|
-          coberturaapolice = Coberturaapolice.new
-          coberturaapolice.apolice_id = @apolice.id
-          coberturaapolice.cobertura_id = item.id
-          coberturaapolice.valor = item.valor
-          coberturaapolice.valor_franquia = item.valor_franquia
-          coberturaapolice.save
-        end
-
-        format.html { redirect_to edit_apolice_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
-        format.json { render :show, status: :created, location: @apolice }
-      else
-        format.html { render :new }
-        format.json { render json: @apolice.errors, status: :unprocessable_entity }
-      end
-    end
+    
+    @apolice = Apolice.new                                                                                                           
+    if !params[:id].blank?
+       apolice = Apolice.find(params[:id])
+       
+       @apolice.ramo = apolice.ramo
+       @apolice.produto = apolice.produto
+       @apolice.apolice = apolice.apolice
+       @apolice.item = apolice.item
+       @apolice.data_proposta = apolice.data_proposta
+       @apolice.vig_inicio = apolice.vig_inicio
+       @apolice.vig_termino = apolice.vig_termino
+       @apolice.nome_segurado = apolice.nome_segurado
+       @apolice.cpf = apolice.cpf
+       @apolice.endereco = apolice.endereco
+       @apolice.bairro = apolice.bairro
+       @apolice.cidade = apolice.cidade
+       @apolice.cep = apolice.cep
+       @apolice.uf = apolice.uf
+       @apolice.valr_adicional = apolice.valr_adicional
+       @apolice.valr_custo = apolice.valr_custo
+       @apolice.valr_iof = apolice.valr_iof
+       @apolice.valr_premiototal = apolice.valr_premiototal
+       @apolice.desc_obs = apolice.desc_obs
+       @apolice.numr_mensal = apolice.numr_mensal
+       @apolice.cnpj = apolice.cnpj
+       @apolice.apartamento = apolice.apartamento
+       @apolice.valor_franquiaportao = apolice.valor_franquiaportao
+       @apolice.valor_mensal = apolice.valor_mensal
+       @apolice.qtd_parcelas = apolice.qtd_parcelas
+       @apolice.data_proposta = apolice.data_proposta
+     end
+    
+       respond_to do |format|
+       if @apolice.save
+           coberturas = Cobertura.all
+         
+           coberturas.each do |item|
+             coberturaapolice = Coberturaapolice.new
+             coberturaapolice.apolice_id = @apolice.id
+             coberturaapolice.cobertura_id = item.id
+             coberturaapolice.valor = item.valor
+             coberturaapolice.valor_franquia = item.valor_franquia
+             coberturaapolice.save
+           end 
+           format.html { redirect_to edit_apolice_path(@apolice), notice: 'Cadastro realizado com sucesso.' }
+           format.json { render :show, status: :created, location: @apolice }
+         else
+           format.html { render :new }
+           format.json { render json: @apolice.errors, status: :unprocessable_entity }
+         end
+       end
   end
 
   # GET /apolices/1/edit
