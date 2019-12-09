@@ -105,9 +105,9 @@ def relatorionovo
   def index
     if params[:q]
       @q =  params[:q].downcase
-      @apolices = Apolice.where("page IS NULL and lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10)
+      @apolices = Apolice.where("page IS NULL and lower(nome_segurado) like '%#{@q}%' OR lower(apartamento) like '%#{@q}%'").page(params[:page]).per(10).order("id DESC")
     else
-      @apolices = Apolice.where("page IS NULL and (ramo IS NOT NULL and produto IS NOT NULL and apolice IS NOT NULL)").page(params[:page]).per(10)
+      @apolices = Apolice.where("page IS NULL and (ramo IS NOT NULL and produto IS NOT NULL and apolice IS NOT NULL)").page(params[:page]).per(10).order("id DESC")
     end
   end
 
